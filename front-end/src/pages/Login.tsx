@@ -1,6 +1,9 @@
+import React from 'react';
 import { Fragment, useState } from "react";
 import "../Style/Login.css";
 import Alert from "../component/Alert";
+import { USER_SERVICE_URL } from '../utils/api';
+
 function Login() {
 
 
@@ -10,7 +13,7 @@ function Login() {
     event.preventDefault();
     
     try {
-      const response = await fetch("http://localhost:3001/users/login", {
+      const response = await fetch(`${USER_SERVICE_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

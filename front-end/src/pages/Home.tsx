@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import "../Style/home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "../component/card";
+import { PRODUCT_SERVICE_URL } from '../utils/api';
 
 function Home() {
   const [data, setData] = useState([]);
@@ -15,7 +16,7 @@ function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3002/products", {
+      const response = await fetch(`${PRODUCT_SERVICE_URL}/products`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,7 +44,7 @@ function Home() {
     if (selectedCategory === "idle") {
       fetchData();
     } else {
-      fetch(`http://localhost:3002/filter/category/${selectedCategory}`, {
+      fetch(`${PRODUCT_SERVICE_URL}/filter/category/${selectedCategory}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
