@@ -49,14 +49,14 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 3003
+            port: 9003
           initialDelaySeconds: 60
           periodSeconds: 15
           failureThreshold: 6
         readinessProbe:
           httpGet:
             path: /health
-            port: 3003
+            port: 9003
           initialDelaySeconds: 20
           periodSeconds: 10
           failureThreshold: 6
@@ -72,7 +72,7 @@ spec:
   selector:
     app: cart-service
   ports:
-  - port: 3003
-    targetPort: 3003
+  - port: 9003
+    targetPort: 9003
     protocol: TCP
   type: ClusterIP 
