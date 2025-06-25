@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: user:latest
+        image: minac4/mern-pro-user:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3001

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: product-service
-        image: product:latest
+        image: minac4/mern-pro-product:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3002

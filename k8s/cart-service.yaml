@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cart-service
-        image: cart:latest
+        image: minac4/mern-pro-cart:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3003
