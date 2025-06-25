@@ -5,30 +5,36 @@ services:
     ports:
       - "3001:3001"
     command: node server.js
+    env_file:
+      - .env
     environment:
       - PORT=3001
       - MONGO_DBNAME=user_db
-      - MONGO_URI=mongodb://mongo:27017/user_db
+      - MONGO_URI=${MONGO_URI_USER}
 
   cart:
     build: ./Cart
     ports:
       - "3003:3003"
     command: node server.js
+    env_file:
+      - .env
     environment:
       - PORT=3003
       - MONGO_DBNAME=cart_db
-      - MONGO_URI=mongodb://mongo:27017/cart_db
+      - MONGO_URI=${MONGO_URI_CART}
 
   product:
     build: ./Product
     ports:
       - "3002:3002"
     command: node server.js
+    env_file:
+      - .env
     environment:
       - PORT=3002
       - MONGO_DBNAME=product_db
-      - MONGO_URI=mongodb://mongo:27017/product_db
+      - MONGO_URI=${MONGO_URI_PRODUCT}
 
   mongo:
     image: mongo:6
