@@ -23,7 +23,7 @@ spec:
         - containerPort: 3003
         env:
         - name: MONGO_URI
-          value: mongodb://mongodb:27017/cart_db
+          value: mongodb://mongodb-service:27017/cart_db
         - name: NODE_ENV
           valueFrom:
             configMapKeyRef:
