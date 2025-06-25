@@ -49,16 +49,16 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 3002
-          initialDelaySeconds: 60
+            port: 9000
+          initialDelaySeconds: 10
           periodSeconds: 15
           failureThreshold: 6
         readinessProbe:
           httpGet:
             path: /health
-            port: 3002
-          initialDelaySeconds: 20
-          periodSeconds: 10
+            port: 9000
+          initialDelaySeconds: 10
+          periodSeconds: 15
           failureThreshold: 6
 ---
 apiVersion: v1
