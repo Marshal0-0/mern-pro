@@ -1,7 +1,7 @@
 version: '3'
 services:
   user:
-    image: user
+    build: ./User
     ports:
       - "3001:3001"
     command: node server.js
@@ -12,10 +12,10 @@ services:
       - MONGO_DBNAME=user_db
 
   cart:
-    image: cart
+    build: ./Cart
     ports:
       - "3003:3003"
-    command: node server.js  
+    command: node server.js
     env_file:
       - .env
     environment:
@@ -23,7 +23,7 @@ services:
       - MONGO_DBNAME=cart_db
 
   product:
-    image: product
+    build: ./Product
     ports:
       - "3002:3002"
     command: node server.js
