@@ -2,8 +2,16 @@ import "../Style/profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Fragment, useState, useEffect } from "react";
 
+interface Product {
+  image: string;
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+}
+
 function ProductInfo() {
-  const [inputValue, setInputValue] = useState({});
+  const [inputValue, setInputValue] = useState<Product | null>(null);
   const productID = localStorage.getItem("productID");
 
   useEffect(() => {
@@ -49,9 +57,6 @@ function ProductInfo() {
           console.error("Error:", error);
         });
     }
-
-  
-
   };
 
   return (
@@ -65,12 +70,12 @@ function ProductInfo() {
                   <div className="main-profile ">
                     <div className="row">
                       <div className="col-lg-4">
-                        <img src={inputValue.image} alt="" />
+                        {inputValue && <img src={inputValue.image} alt="" />}
                       </div>
                       <div className="col-lg-4 align-self-center">
                         <div className="main-info header-text">
-                          <h4>{inputValue.name}</h4>
-                          <p>{inputValue.description}</p>
+                          <h4>{inputValue?.name}</h4>
+                          <p>{inputValue?.description}</p>
                           <div className="main-button">
                             <button className="searchButton" type="button" onClick={onSubmithandler}>
                               Add To Cart
@@ -81,10 +86,10 @@ function ProductInfo() {
                       <div className="col-lg-4 align-self-center">
                         <ul>
                           <li>
-                            Game Category <span>{inputValue.category}</span>
+                            Game Category <span>{inputValue?.category}</span>
                           </li>
                           <li>
-                            Price <span>{inputValue.price}</span>
+                            Price <span>{inputValue?.price}</span>
                           </li>
                         </ul>
                       </div>

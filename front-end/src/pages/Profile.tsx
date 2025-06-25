@@ -9,10 +9,18 @@ import clip4 from "../assets/clip-04.jpg";
 import profile from "../assets/profile.jpg";
 import profileg from "../assets/profileGirl.jpg";
 import { useState, useEffect, Fragment } from "react";
+
+interface User {
+  gender: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
+  phone: string;
+}
+
 function Profile() {
-
-
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,7 +45,6 @@ function Profile() {
     }
   }, []);
 
-
   // var image = profile;
   // if (data.gender === "female") {
   //   image = profileg;
@@ -55,13 +62,13 @@ function Profile() {
                     <div className="row">
                       <div className="col-lg-4">
                         {/* Render user profile image here */}
-                        <img src={user.gender === "female" ? profileg : profile} alt="Profile Image" />
+                        {user && <img src={user.gender === "female" ? profileg : profile} alt="Profile Image" />}
                       </div>
                       <div className="col-lg-4 align-self-center">
                         <div className="main-info header-text">
-                          <h1 id="firstname">{user.firstName}</h1>
-                          <h5 id="lastname">{user.lastName}</h5>
-                          <p>"I'm {user.firstName}, a passionate gamer who loves exploring new worlds and conquering challenges. Let's conquer the gaming world together!"</p>
+                          <h1 id="firstname">{user?.firstName}</h1>
+                          <h5 id="lastname">{user?.lastName}</h5>
+                          <p>"I'm {user?.firstName}, a passionate gamer who loves exploring new worlds and conquering challenges. Let's conquer the gaming world together!"</p>
                           <div className="main-border-button">
                             <a href="#">Update</a>
                           </div>
@@ -70,13 +77,13 @@ function Profile() {
                       <div className="col-lg-4 align-self-center">
                         <ul>
                           <li>
-                            Email <span>{user.email}</span>
+                            Email <span>{user?.email}</span>
                           </li>
                           <li>
-                            Age <span>{user.age}</span>
+                            Age <span>{user?.age}</span>
                           </li>
                           <li>
-                            Phone Number <span>{user.phone}</span>
+                            Phone Number <span>{user?.phone}</span>
                           </li>
                           <li>
                             Clips <span>29</span>
