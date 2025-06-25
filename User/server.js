@@ -29,13 +29,17 @@ const server = app.listen(port, () => {
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
-function shutdown() {
+async function shutdown() {
     console.log('Received kill signal, shutting down gracefully');
-    server.close(() => {
+    server.close(async () => {
         const mongoose = require('mongoose');
-        mongoose.connection.close(false, () => {
+        try {
+            await mongoose.connection.close(false);
             console.log('MongoDb connection closed.');
             process.exit(0);
-        });
+        } catch (err) {
+            console.error('Error closing MongoDb connection:', err);
+            process.exit(1);
+        }
     });
 }
