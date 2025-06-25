@@ -44,6 +44,9 @@ spec:
           periodSeconds: 15
           timeoutSeconds: 1
           failureThreshold: 3
+        envFrom:
+          - configMapRef:
+              name: frontend-config
 ---
 apiVersion: v1
 kind: Service
