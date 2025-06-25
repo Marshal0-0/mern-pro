@@ -23,7 +23,7 @@ spec:
         - containerPort: 3002
         env:
         - name: MONGO_URI
-          value: mongodb://mongodb:27017/product_db
+          value: mongodb://mongodb-service:27017/product_db
         - name: NODE_ENV
           valueFrom:
             configMapKeyRef:
