@@ -15,6 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", require("./routes/userRouter"))
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
 
 
 app.listen(port, () => {

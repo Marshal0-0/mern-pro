@@ -16,6 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/products", require("./routes/productRouter"))
 app.use("/filter", require("./routes/filterRouter"))
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
