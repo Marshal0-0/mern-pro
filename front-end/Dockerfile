@@ -1,14 +1,15 @@
-FROM node:18
-
+# --- Builder Stage ---
+FROM node:18-alpine AS builder
 WORKDIR /app
-
 COPY package*.json ./
-RUN npm install
-
 COPY . .
+RUN npm install --frozen-lockfile \
+    && npm run build
 
-RUN npm run build
-
-EXPOSE 5173
-
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
+# --- Production Stage ---
+FROM node:18-alpine AS production
+WORKDIR /app
+RUN npm install -g vite
+COPY --from=builder /app/dist ./dist
+EXPOSE 80
+ENTRYPOINT ["vite", "preview", "--port", "80", "--host"]
