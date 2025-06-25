@@ -21,6 +21,20 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
+
+function shutdown() {
+    console.log('Received kill signal, shutting down gracefully');
+    server.close(() => {
+        const mongoose = require('mongoose');
+        mongoose.connection.close(false, () => {
+            console.log('MongoDb connection closed.');
+            process.exit(0);
+        });
+    });
+}
