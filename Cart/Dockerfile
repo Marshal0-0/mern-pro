@@ -1,11 +1,11 @@
-FROM node
+FROM node:18
 
 WORKDIR /app
 
-COPY . /app
-
-EXPOSE 3003:3003
+COPY . .
 
 RUN npm install
 
-CMD npm run dev
+EXPOSE 3003
+
+CMD ["npm", "run", "dev"]
